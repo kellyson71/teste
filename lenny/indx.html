@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+    }
+
+    header {
+      width: 100%;
+      background-color: #d96831;
+      padding: 15px 0;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f5f5f5;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #d96831;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e6b33d;
+    }
+
+    .biblioteca-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .biblioteca-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .biblioteca-subtitle {
+      font-size: 18px;
+      color: #274862;
+    }
+
+    .estante {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .livro {
+      width: 100px;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      margin: 0 15px 20px;
+      transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .livro:hover {
+      transform: scale(1.1);
+    }
+
+    .livro-expanded {
+      width: 220px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .titulo-livro {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-size: 12px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    .sinopse {
+      display: none;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: white;
+      font-size: 12px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .popup-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    h1, p {
+      text-align: center;
+      color: #d96831;
+    }
+
+    footer {
+      width: 100%;
+      background-color: #d96831;
+      padding: 15px 0;
+      text-align: center;
+      color: white;
+      position: fixed;
+      bottom: 0;
+    }
+    .popup-content button {
+      background-color: #d96831;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-content button:hover {
+      background-color: #e6b33d;
+    }
+    .popup-content button {
+      background-color: #d96831;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-content button:hover {
+      background-color: #e6b33d;
+    }
+    .popup-content button {
+      background-color: #d96831;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-content button:hover {
+      background-color: #e6b33d;
+    }
+  </style>
+  <title>Estante de Livros</title>
+</head>
+
+  <header>
+    <h1>Minha Estante de Livros</h1>
+  </header>
+
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Catálogo</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <div class="biblioteca-container">
+    <div class="biblioteca-title">Biblioteca</div>
+    <div class="biblioteca-subtitle">um ano novo vindo, tantas mudanças, entao pq n dar uma relambrada?</div>
+  </div>
+
+  <div class="estante">
+    <div class="livro" id="livro1" onclick="alterarLivro(this)">
+      <div class="titulo-livro">Memorias</div>
+      <div class="sinopse">cap1 - alguns momentos que valem relembrar </div>
+    </div>
+    <div class="livro" id="livro2" onclick="alterarLivro(this)">
+      <div class="titulo-livro">Playlist</div>
+      <div class="sinopse">porque não juntar algumas musicas incriveis? musicas que são sua cara (algumas eu acho)</div>
+    </div>
+    <div class="livro" id="livro3" onclick="alterarLivro(this)">
+      <div class="titulo-livro">Lista de taferas</div>
+      <div class="sinopse">Bom, para seguir a tradiçao que sempre faço, porque não colocar umas metas?</div>
+    </div>
+    <div class="livro" id="livro4" onclick="alterarLivro(this)">
+      <div class="titulo-livro">galeria</div>
+      <div class="sinopse">compilado de desenhos, bom, é issokkk</div>
+    </div>
+  </div>
+
+  <div class="popup" id="popup" onclick="fecharPopup()">
+    <div class="popup-content" id="popup-content" onclick="event.stopPropagation();">
+      <p id="conteudoPopup">Conteúdo do livro</p>
+      <button onclick="fecharPopup()">Fechar</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Minha Estante de Livros
+  </footer>
+
+
+  <script>
+    const caminhoDaImagemPadrao = './capa.png';
+    let livroExpandido = null;
+
+    document.querySelectorAll('.livro').forEach((livro, index) => {
+      livro.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
+
+      // Adiciona o caminho expandido ao atributo data-caminho-expandido
+      livro.setAttribute('data-caminho-expandido', `./capa${index + 1}.jpg`);
+    });
+
+    function alterarLivro(livroClicado) {
+      const popupContent = document.getElementById('popup-content');
+      const sinopse = livroClicado.querySelector('.sinopse');
+
+      if (livroClicado.classList.contains('livro-expanded')) {
+        // Se o livro já está expandido, mostra o popup com o botão "Ver Conteúdo"
+        popupContent.innerHTML = `<p>${sinopse.innerHTML}</p><button onclick="verConteudo('${livroClicado.id}')">Ver Conteúdo</button>`;
+        mostrarPopup();
+      } else {
+        // Se não, expande o livro e atualiza o livro expandido
+        if (livroExpandido) {
+          livroExpandido.classList.remove('livro-expanded');
+          livroExpandido.querySelector('.sinopse').style.display = 'none';
+          livroExpandido.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
+        }
+
+        livroClicado.classList.add('livro-expanded');
+        livroExpandido = livroClicado;
+
+        // Atualiza a imagem e mostra a sinopse
+        const caminhoExpandido = livroClicado.getAttribute('data-caminho-expandido');
+        livroClicado.style.backgroundImage = `url('${caminhoExpandido}')`;
+        sinopse.style.display = 'block';
+
+        // Esconde a sinopse dos outros livros
+        document.querySelectorAll('.livro').forEach(outroLivro => {
+          if (outroLivro !== livroClicado) {
+            outroLivro.querySelector('.sinopse').style.display = 'none';
+            outroLivro.classList.remove('livro-expanded');
+          }
+        });
+      }
+    }
+
+    function mostrarPopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'flex';
+    }
+
+    function fecharPopup() {
+      const popup = document.getElementById('popup');
+      const popupContent = document.getElementById('popup-content');
+
+      // Restaura o tamanho do livro expandido
+      if (livroExpandido) {
+        livroExpandido.classList.remove('livro-expanded');
+        livroExpandido.querySelector('.sinopse').style.display = 'none';
+        livroExpandido.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
+        livroExpandido = null;
+      }
+
+      // Retorna a imagem do livro para a versão original
+      document.querySelectorAll('.livro').forEach(livro => {
+        livro.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
+      });
+
+      popupContent.innerHTML = '';  // Limpa o conteúdo do pop-up
+      popup.style.display = 'none';
+    }
+
+    function verConteudo(livroId) {
+      switch (livroId) {
+        case 'livro1':
+          window.location.href = './livro/index.html';
+          break;
+        case 'livro2':
+          window.location.href = './livro/cap2.html';
+          break;
+        case 'livro3':
+          window.location.href = './livro/index2.html';
+          break;
+        case 'livro4':
+          window.location.href = './livro/index3.html';
+          break;
+        // Adicione mais casos conforme necessário
+        default:
+          console.error('Livro não encontrado');
+      }
+    }
+  </script>
+
+  <!-- Adicione os conteúdos dos livros aqui -->
+
+</body>
+</html>
