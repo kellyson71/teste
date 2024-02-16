@@ -5,7 +5,7 @@ function validateLogin() {
   // Check if the entered email and password match the specified values
   if (emailInput === "kellyson.medeiros.pdf@gmail.com" && passwordInput === "kellyson123") {
       // Redirect to another page
-      window.location.href = "another_page.html";
+      window.location.href = "./indx.html";
   } else {
       alert("ainda vou fazer a pagina de cadastro");
   }
