@@ -7,12 +7,12 @@ function validateLogin() {
       // Redirect to another page
       window.location.href = "./indx.html";
   } else {
-      alert("ainda vou fazer a pagina de cadastro");
+      alert("iiih, botou errado hem");
   }
 }
 
 function forgotPassword() {
-  alert("como vc esqueceu a senha? nem conta vc tem"); // Display a message when "Esqueci minha senha" is clicked
+  alert("manda msg no zap"); // Display a message when "Esqueci minha senha" is clicked
 }
 
 const capas = [
