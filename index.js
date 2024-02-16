@@ -3,7 +3,7 @@ function validateLogin() {
   var passwordInput = document.getElementById("password").value;
 
   // Check if the entered email and password match the specified values
-  if (emailInput === "kellyson.medeiros.pdf@gmail.com" && passwordInput === "kellyson123") {
+  if (emailInput === "Milenny@gmail.com" && passwordInput === "Milenny123") {
       // Redirect to another page
       window.location.href = "./indx.html";
   } else {
