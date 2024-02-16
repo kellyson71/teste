@@ -24,5 +24,5 @@ function movePage(e, page) {
 }
 document.getElementById("redirectButton").addEventListener("click", function() {
   // Substitua 'pagina-de-destino.html' pela URL da página para a qual você deseja redirecionar
-  window.location.href = "/index.html";
+  window.close();
 });

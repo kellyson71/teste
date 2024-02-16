@@ -17,7 +17,7 @@ body {
   height: 100vh;
   min-width: 900px;
   min-height: 700px;
-  background: #b4ccfb;
+  background: #D8F3DC;
   position: relative;
 }
 
@@ -1158,20 +1158,20 @@ body {
 .cover-front:nth-child(1) h1 {
   font-family: "Lora", serif;
   font-size: 45px;
-  color: #ffffff;
+  color: #000000;
   margin-top: 30px;
   text-transform: uppercase;
 }
 .cover-front:nth-child(1) h2 {
   font-family: "EB Garamond", serif;
   font-size: 24px;
-  color: #ffffff;
+  color: #000000;
   position: relative;
   top: 40%;
 }
 .cover-front:nth-child(1) .hat {
   font-size: 100px;
-  color: #ffffff;
+  color: #000000;
   position: relative;
   top: 3%;
 }

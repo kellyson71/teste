@@ -17,7 +17,7 @@ body {
   height: 100vh;
   min-width: 900px;
   min-height: 700px;
-  background: #FBE7C6;
+  background: #CAF0F8;
   position: relative;
 }
 
@@ -55,7 +55,7 @@ body {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
   transform: translatez(-1px);
-  background: #6B4E3D;
+  background: #9bc8d6;
 }
 
 .left-side:nth-child(1) {
@@ -66,7 +66,7 @@ body {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
   transform: translatez(-2px) scalex(-1) translatex(100%);
-  background: #6B4E3D;
+  background: #cc9bd6;
 }
 
 .left-side:nth-child(2) {
@@ -1153,7 +1153,7 @@ body {
 
 .cover-front:nth-child(1) {
   text-align: center;
-  background: linear-gradient(#6B4E3D, #6B4E3D) 50% 50%/80% 86% no-repeat, linear-gradient(#f5f5f5, #f5f5f5) 50% 50%/90% 93% no-repeat, linear-gradient(#6B4E3D, #6B4E3D) no-repeat;
+  background: linear-gradient(#b96db4, #FFA500) 50% 50%/80% 86% no-repeat, linear-gradient(#f5f5f5, #f5f5f5) 50% 50%/90% 93% no-repeat, linear-gradient(#b96db4, #FFA500) no-repeat;
 }
 .cover-front:nth-child(1) h1 {
   font-family: "Lora", serif;

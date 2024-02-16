@@ -130,3 +130,14 @@
 
 </body>
 </html>
+<script>
+  function fecharPagina() {
+    window.close();
+  }
+
+  // Obtendo referência para o botão
+  var botao = document.getElementById('redirectButton');
+
+  // Adicionando um ouvinte de evento para o clique no botão
+  botao.addEventListener('click', fecharPagina);
+</script>

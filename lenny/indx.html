@@ -4,6 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+body {
+  padding: 1em;
+  background: #f0f0f0;
+}
+
+h1 {
+  position: relative;
+  box-shadow: 0em 1em 1em 1px gray;
+  margin: 0 auto;
+  display: block;
+  width: 10em;
+  text-align: center;
+  color: #323232;
+  text-transform: uppercase;
+  font-size: 4em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+}
+h1 span {
+  position: relative;
+  text-transform: capitalize;
+  font-family: serif;
+  font-style: italic;
+  font-size: 0.7em;
+}
+h1:after {
+  content: "";
+  border-bottom: 2px solid #6d4420;
+  border-top: 2px solid #ce8e59;
+  background: #A86832;
+  display: block;
+  width: 100%;
+  height: 0.2em;
+  position: absolute;
+  bottom: -0.1em;
+}
+h1:before {
+  content: "";
+  color: #9c612e;
+  border-top: 0.3em solid;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  display: block;
+  width: 88%;
+  height: 0;
+  background: transparent;
+  position: absolute;
+  bottom: -0.35em;
+  perspective: 300;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg);
+}
+
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
@@ -13,7 +67,7 @@
 
     header {
       width: 100%;
-      background-color: #d96831;
+      background-color: #A0E7E5;
       padding: 15px 0;
       text-align: center;
       color: white;
@@ -21,7 +75,7 @@
 
     nav {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       background-color: #f5f5f5;
       padding: 10px 0;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -29,23 +83,26 @@
 
     nav a {
       text-decoration: none;
-      color: #d96831;
+      color: #000000;
       font-weight: bold;
       transition: color 0.3s;
+      padding: 10px; 
     }
 
     nav a:hover {
-      color: #e6b33d;
+      color: #FFAEBC;
     }
 
     .biblioteca-container {
       text-align: center;
       margin-top: 20px;
+      padding: 20px; 
     }
 
     .biblioteca-title {
-      font-size: 24px;
+      font-size: 36px;
       margin-bottom: 10px;
+      color: #274862; 
     }
 
     .biblioteca-subtitle {
@@ -56,53 +113,149 @@
     .estante {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; 
       flex-wrap: wrap;
+      margin: 20px; 
     }
 
     .livro {
-      width: 100px;
-      height: 180px;
+      width: 200px;
+      height: 300px;
+      margin: 10px;
       background-size: cover;
-      background-position: center;
-      margin: 0 15px 20px;
-      transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-      cursor: pointer;
+      transition: background-image 0.5s ease-in-out;
       position: relative;
+      z-index: 1;
     }
 
-    .livro:hover {
-      transform: scale(1.1);
+    .livro.livro-expanded {
+      z-index: 2;
     }
 
     .livro-expanded {
-      width: 220px;
+      width: 240px;
+      height: 360px; 
       z-index: 1;
       position: relative;
     }
 
-    .titulo-livro {
+    .titulo-livro,
+    .sinopse {
       position: absolute;
-      top: 10px;
-      left: 10px;
       color: white;
-      font-size: 12px;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 5px;
+      font-size: 14px;
+      padding: 8px;
       border-radius: 5px;
       z-index: 2;
     }
 
+    .titulo-livro {
+      top: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
     .sinopse {
-      display: none;
-      position: absolute;
       bottom: 10px;
       left: 10px;
-      color: white;
-      font-size: 12px;
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 5px;
+      display: none;
+    }
+
+    .livro:hover .sinopse {
+      display: block;
+    }
+
+
+
+    h1, p {
+      text-align: center;
+      color: #000000;
+    }
+
+    footer {
+      width: 100%;
+      background-color: #B4F8C8;
+      padding: 15px 0;
+      text-align: center;
+      color: #000000;
+      position: fixed;
+      bottom: 0;
+    }
+
+
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .popup-content {
+      background-color: white;
+      padding: 20px;
       border-radius: 5px;
+    }
+
+    .popup-content button {
+      background-color: #ae7e24;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-content button:hover {
+      background-color: #ff9966;
+    }
+
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+
+#toggleButton {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+    .estante {
+      display: flex;
+    }
+
+    .livro {
+      width: 200px;
+      height: 300px;
+      margin: 10px;
+      background-size: cover;
+      transition: background-image 0.5s ease-in-out;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .livro.livro-expanded {
       z-index: 2;
     }
 
@@ -113,36 +266,20 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.7);
       align-items: center;
-      z-index: 2;
+      justify-content: center;
+      z-index: 3;
     }
 
     .popup-content {
-      background-color: #fff;
+      background-color: white;
       padding: 20px;
-      border-radius: 8px;
-      max-width: 80%;
-      text-align: center;
+      border-radius: 5px;
     }
 
-    h1, p {
-      text-align: center;
-      color: #d96831;
-    }
-
-    footer {
-      width: 100%;
-      background-color: #d96831;
-      padding: 15px 0;
-      text-align: center;
-      color: white;
-      position: fixed;
-      bottom: 0;
-    }
     .popup-content button {
-      background-color: #d96831;
+      background-color: #ae7e24;
       color: white;
       padding: 8px 16px;
       border: none;
@@ -151,68 +288,52 @@
     }
 
     .popup-content button:hover {
-      background-color: #e6b33d;
-    }
-    .popup-content button {
-      background-color: #d96831;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      background-color: #ff9966;
     }
 
-    .popup-content button:hover {
-      background-color: #e6b33d;
-    }
-    .popup-content button {
-      background-color: #d96831;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+    #quinto-livro {
+        display: none;
+      position: absolute;
+      left: 50%;
+      top: 105%;
 
-    .popup-content button:hover {
-      background-color: #e6b33d;
+      transform: translate(-50%, -50%);
     }
+    
   </style>
-  <title>Estante de Livros</title>
-</head>
 
-  <header>
-    <h1>Minha Estante de Livros</h1>
-  </header>
 
-  <nav>
-    <a href="#">Início</a>
-    <a href="#">Catálogo</a>
-    <a href="#">Contato</a>
-  </nav>
+<body>
+  <h1><span>A incrivel</span> Memórioteca</h1>
 
   <div class="biblioteca-container">
-    <div class="biblioteca-title">Biblioteca</div>
-    <div class="biblioteca-subtitle">um ano novo vindo, tantas mudanças, entao pq n dar uma relambrada?</div>
+    <div class="biblioteca-title">Páginas do Tempo</div>
+    <div class="biblioteca-subtitle">Um ano novo vindo, tantas mudanças, então por que não dar uma relembrada?</div>
+    <div class="biblioteca-subtitle">(pode deixar essa guia aberta, as outras vao abrindo)</div>
   </div>
 
   <div class="estante">
     <div class="livro" id="livro1" onclick="alterarLivro(this)">
-      <div class="titulo-livro">Memorias</div>
-      <div class="sinopse">cap1 - alguns momentos que valem relembrar </div>
+      <div class="titulo-livro">Memórias</div>
+      <div class="sinopse">Capítulo 1 - Alguns momentos que valem relembrar</div>
     </div>
     <div class="livro" id="livro2" onclick="alterarLivro(this)">
       <div class="titulo-livro">Playlist</div>
-      <div class="sinopse">porque não juntar algumas musicas incriveis? musicas que são sua cara (algumas eu acho)</div>
+      <div class="sinopse">Por que não juntar algumas músicas incríveis? Músicas que são a sua cara (algumas eu acho)</div>
     </div>
     <div class="livro" id="livro3" onclick="alterarLivro(this)">
-      <div class="titulo-livro">Lista de taferas</div>
-      <div class="sinopse">Bom, para seguir a tradiçao que sempre faço, porque não colocar umas metas?</div>
+      <div class="titulo-livro">Lista de Tarefas</div>
+      <div class="sinopse">Bom, para seguir a tradição que sempre faço, por que não colocar umas metas?</div>
     </div>
     <div class="livro" id="livro4" onclick="alterarLivro(this)">
-      <div class="titulo-livro">galeria</div>
-      <div class="sinopse">compilado de desenhos, bom, é issokkk</div>
+      <div class="titulo-livro">Galeria</div>
+      <div class="sinopse">Compilado de desenhos, bom, é isso kkk</div>
     </div>
+  </div>
+
+  <div id="quinto-livro" class="livro" onclick="alterarLivro(this)">
+    <div class="titulo-livro">Livro Secreto</div>
+    <div class="sinopse">É isso kkk</div>
   </div>
 
   <div class="popup" id="popup" onclick="fecharPopup()">
@@ -222,104 +343,12 @@
     </div>
   </div>
 
-  <footer>
-    &copy; 2024 Minha Estante de Livros
-  </footer>
+  <script src="./index.js"></script>
 
-
-  <script>
-    const caminhoDaImagemPadrao = './capa.png';
-    let livroExpandido = null;
-
-    document.querySelectorAll('.livro').forEach((livro, index) => {
-      livro.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
-
-      // Adiciona o caminho expandido ao atributo data-caminho-expandido
-      livro.setAttribute('data-caminho-expandido', `./capa${index + 1}.jpg`);
-    });
-
-    function alterarLivro(livroClicado) {
-      const popupContent = document.getElementById('popup-content');
-      const sinopse = livroClicado.querySelector('.sinopse');
-
-      if (livroClicado.classList.contains('livro-expanded')) {
-        // Se o livro já está expandido, mostra o popup com o botão "Ver Conteúdo"
-        popupContent.innerHTML = `<p>${sinopse.innerHTML}</p><button onclick="verConteudo('${livroClicado.id}')">Ver Conteúdo</button>`;
-        mostrarPopup();
-      } else {
-        // Se não, expande o livro e atualiza o livro expandido
-        if (livroExpandido) {
-          livroExpandido.classList.remove('livro-expanded');
-          livroExpandido.querySelector('.sinopse').style.display = 'none';
-          livroExpandido.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
-        }
-
-        livroClicado.classList.add('livro-expanded');
-        livroExpandido = livroClicado;
-
-        // Atualiza a imagem e mostra a sinopse
-        const caminhoExpandido = livroClicado.getAttribute('data-caminho-expandido');
-        livroClicado.style.backgroundImage = `url('${caminhoExpandido}')`;
-        sinopse.style.display = 'block';
-
-        // Esconde a sinopse dos outros livros
-        document.querySelectorAll('.livro').forEach(outroLivro => {
-          if (outroLivro !== livroClicado) {
-            outroLivro.querySelector('.sinopse').style.display = 'none';
-            outroLivro.classList.remove('livro-expanded');
-          }
-        });
-      }
-    }
-
-    function mostrarPopup() {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'flex';
-    }
-
-    function fecharPopup() {
-      const popup = document.getElementById('popup');
-      const popupContent = document.getElementById('popup-content');
-
-      // Restaura o tamanho do livro expandido
-      if (livroExpandido) {
-        livroExpandido.classList.remove('livro-expanded');
-        livroExpandido.querySelector('.sinopse').style.display = 'none';
-        livroExpandido.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
-        livroExpandido = null;
-      }
-
-      // Retorna a imagem do livro para a versão original
-      document.querySelectorAll('.livro').forEach(livro => {
-        livro.style.backgroundImage = `url('${caminhoDaImagemPadrao}')`;
-      });
-
-      popupContent.innerHTML = '';  // Limpa o conteúdo do pop-up
-      popup.style.display = 'none';
-    }
-
-    function verConteudo(livroId) {
-      switch (livroId) {
-        case 'livro1':
-          window.location.href = './livro/index.html';
-          break;
-        case 'livro2':
-          window.location.href = './livro/cap2.html';
-          break;
-        case 'livro3':
-          window.location.href = './livro/index2.html';
-          break;
-        case 'livro4':
-          window.location.href = './livro/index3.html';
-          break;
-        // Adicione mais casos conforme necessário
-        default:
-          console.error('Livro não encontrado');
-      }
-    }
-  </script>
-
-  <!-- Adicione os conteúdos dos livros aqui -->
-
+  <div id="quinto-livro" class="livro" onclick="alterarLivro(this)">
+    <div class="sinopse">
+      <p>Este é o quinto livro!</p>
+    </div>
+  </div>
 </body>
 </html>
